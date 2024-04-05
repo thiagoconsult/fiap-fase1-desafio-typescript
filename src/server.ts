@@ -1,3 +1,5 @@
 import { app } from "./api/app";
 
-app.listen(process.env.PORT, () => console.log("server ok"));
+const PORT = process.env.PORT;
+
+app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
