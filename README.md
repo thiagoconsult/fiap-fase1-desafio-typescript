@@ -15,3 +15,13 @@
 #### Requisitos Técnicos:
 
 - Desenvolvimento do projeto utilizando a versão mais recente do TypeScript para garantir que o seu código esteja atualizado. Integração do sistema a um banco de dados que pode ser um NoSQL ou SQL. Neste cenário, você pode utilizar o Docker ou um banco de dados grátis como o PostgreSQL na plataforma Supabase.
+
+### **Solução**
+
+#### O desafio foi feito com Nodejs, Express, Typescript, TypeOrm e banco de dados sqlite3.
+
+Para executar:
+
+- clonar o projeto
+- executar npm install
+- executar npm run dev
