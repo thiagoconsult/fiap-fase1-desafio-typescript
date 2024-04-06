@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.publisherRoutes = void 0;
+const express_1 = require("express");
+const publisherController_1 = require("../controller/publisherController");
+exports.publisherRoutes = (0, express_1.Router)();
+exports.publisherRoutes.get("/healthCheck", publisherController_1.publisherController.healthCheck);
+exports.publisherRoutes.put("/:id", publisherController_1.publisherController.update);
+exports.publisherRoutes.get("/:id", publisherController_1.publisherController.findById);
+exports.publisherRoutes.delete("/:id", publisherController_1.publisherController.del);
+exports.publisherRoutes.post("/", publisherController_1.publisherController.create);
+exports.publisherRoutes.get("/", publisherController_1.publisherController.getAll);

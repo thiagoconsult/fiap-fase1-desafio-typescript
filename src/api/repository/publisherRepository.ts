@@ -6,11 +6,14 @@ export namespace publisherRepository {
 
   export const update = async (id: number, updatedPublisher: Publisher) => {
     const _updatedPublisher = await repository.findOneBy({ id: id });
+
     if (_updatedPublisher) {
       _updatedPublisher.name = updatedPublisher.name;
       const result = await repository.save(_updatedPublisher);
+
       return result;
     }
+
     return null;
   };
 
@@ -20,17 +23,23 @@ export namespace publisherRepository {
         id: id,
       },
     });
+
     return result;
   };
 
   export const del = async (id: number) => {
     const result = await repository.delete(id);
+
     return result;
   };
 
   export const create = async (newPublisher: Publisher) => {
-    const result = await repository.save(newPublisher);
-    return result;
+    try {
+      const result = await repository.save(newPublisher);
+      return result;
+    } catch (error) {
+      return error;
+    }
   };
 
   export const getAll = async () => {

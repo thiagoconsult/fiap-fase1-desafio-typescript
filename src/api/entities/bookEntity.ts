@@ -1,22 +1,16 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-  JoinColumn,
-} from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 import { Publisher } from "./publisherEntity";
 
 @Entity()
 export class Book {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
   title: string;
 
   @Column()
-  author: number;
+  author: string;
 
   @Column({ nullable: true })
   isbn: string;
@@ -29,4 +23,18 @@ export class Book {
     cascade: false,
   })
   publisher: Publisher;
+
+  constructor(
+    title: string,
+    author: string,
+    isbn: string,
+    anoPublicacao: Date,
+    publisher: Publisher
+  ) {
+    this.title = title;
+    this.author = author;
+    this.isbn = isbn;
+    this.anoPublicacao = anoPublicacao;
+    this.publisher = publisher;
+  }
 }

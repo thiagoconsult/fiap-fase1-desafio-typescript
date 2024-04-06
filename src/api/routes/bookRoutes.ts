@@ -1,4 +1,4 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
 import { bookController } from "../controller/bookController";
 
 export const bookRoutes = Router();

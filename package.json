@@ -4,7 +4,9 @@
   "description": "## **Sistema de gerenciamento de biblioteca.**",
   "main": "server.js",
   "scripts": {
-    "dev": "ts-node-dev --transpile-only -r dotenv/config ./src/server.ts"
+    "dev": "ts-node-dev --transpile-only -r dotenv/config ./src/server.ts",
+    "build": "npx tsc",
+    "prd": "node -r dotenv/config ./build/server.js"
   },
   "keywords": [],
   "author": "",

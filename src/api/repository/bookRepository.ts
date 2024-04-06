@@ -1,6 +1,5 @@
 import { Book } from "../entities/bookEntity";
 import { apiDataSource } from "../database/dataSource";
-import { error } from "console";
 
 export namespace bookRepository {
   const repository = apiDataSource.getRepository(Book);
@@ -27,6 +26,9 @@ export namespace bookRepository {
     const result = await repository.find({
       where: {
         id: id,
+      },
+      relations: {
+        publisher: true,
       },
     });
 

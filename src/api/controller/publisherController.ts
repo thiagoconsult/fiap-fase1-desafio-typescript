@@ -12,7 +12,8 @@ export namespace publisherController {
     const updatedPublisher = <Publisher>req.body;
     const result = await publisherRepository.update(id, updatedPublisher);
 
-    if (result === null) return res.status(404).send("404 - Not Found");
+    if (result === null)
+      return res.status(404).send({ error: "404 - Not Found" });
 
     return res.json(result);
   };
@@ -30,6 +31,7 @@ export namespace publisherController {
   export const del = async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     const result = await publisherRepository.del(id);
+
     if (result.affected === 0)
       return res.status(404).json({ error: "404 - Not Found" });
 
@@ -37,10 +39,11 @@ export namespace publisherController {
   };
 
   export const create = async (req: Request, res: Response) => {
-    const { name } = <Publisher>req.body;
-    const newPublisher = new Publisher();
-    newPublisher.name = name;
+    const { name, books } = <Publisher>req.body;
 
+    if (!name) return res.status(500).send({ error: "Required field: name" });
+
+    const newPublisher = new Publisher(name, books);
     const result = await publisherRepository.create(newPublisher);
 
     return res.status(201).json(result);
@@ -48,6 +51,10 @@ export namespace publisherController {
 
   export const getAll = async (req: Request, res: Response) => {
     const result = await publisherRepository.getAll();
+
+    if (result.length === 0)
+      return res.status(404).send({ error: "404 - Not Found" });
+
     return res.json({ publishers: result });
   };
 }
